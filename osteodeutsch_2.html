@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OsteoDeutsch 2.0 — Anatomie lernen</title>
+<style>
+:root{--bg:#f5f7fb;--surface:#fff;--ink:#172033;--muted:#6b7890;--line:#e5eaf2;--blue:#2563eb;--violet:#7c3aed;--green:#16a34a;--red:#dc2626;--shadow:0 18px 55px #17203312}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 85% -10%,#dbeafe 0,transparent 32%),var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,select{font:inherit}button{cursor:pointer}.app{max-width:1240px;margin:auto;padding:18px}
+header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}.brand{display:flex;gap:11px;align-items:center}.logo{width:46px;height:46px;border-radius:15px;background:linear-gradient(135deg,var(--blue),var(--violet));display:grid;place-items:center;color:#fff;font-size:24px;box-shadow:0 10px 25px #2563eb30}.brand h1{font-size:20px;margin:0}.brand small{color:var(--muted)}
+.topstats{display:flex;gap:8px}.stat{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 11px;font-size:12px}.stat b{font-size:15px}
+.hero{background:linear-gradient(135deg,#111b34,#29458d);color:#fff;border-radius:27px;padding:30px;position:relative;overflow:hidden;box-shadow:var(--shadow)}.hero:after{content:"";position:absolute;width:370px;height:370px;border:60px solid #fff1;border-radius:50%;right:-90px;top:-210px}.hero h2{font-size:35px;line-height:1.08;margin:0 0 10px;max-width:720px}.hero p{color:#d8e2ff;max-width:720px}.heroBtns{display:flex;gap:9px;flex-wrap:wrap}.primary,.ghost{border-radius:12px;padding:11px 15px;font-weight:700}.primary{background:#fff;color:#172033}.ghost{background:#ffffff18;color:#fff;border:1px solid #ffffff30}
+.layout{display:grid;grid-template-columns:310px 1fr;gap:17px;margin-top:17px}.panel{background:var(--surface);border:1px solid var(--line);border-radius:21px;padding:17px;box-shadow:0 8px 30px #17203308}.panel h3{margin:0 0 12px}.sidebar{position:sticky;top:12px;height:max-content}.search{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:11px;outline:none}.filters{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}.chip{border:0;background:#f0f3f8;color:#526078;padding:7px 9px;border-radius:9px;font-size:12px}.chip.active{background:#dbeafe;color:#1d4ed8;font-weight:700}.boneList{max-height:570px;overflow:auto;display:grid;gap:6px}.bone{border:1px solid var(--line);background:#fff;border-radius:11px;padding:9px 10px;text-align:left}.bone:hover{border-color:#9ab7ff}.bone b{display:block;font-size:13px}.bone span{font-size:11px;color:var(--muted)}
+.main{display:grid;gap:17px}.toolbar{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}.modes{display:flex;gap:6px}.mode{border:0;background:#eef2f7;padding:9px 11px;border-radius:10px}.mode.on{background:#1d4ed8;color:#fff}.progress{height:8px;background:#edf1f6;border-radius:99px;overflow:hidden;margin:11px 0}.bar{height:100%;background:linear-gradient(90deg,var(--blue),var(--violet));width:0;transition:.3s}
+.study{min-height:520px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}.flash{width:min(100%,650px);height:300px;perspective:1000px}.card{height:100%;border:1px solid var(--line);border-radius:27px;background:linear-gradient(145deg,#fff,#f6f8ff);box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;flex-direction:column;padding:25px;cursor:pointer}.tag{font-size:12px;color:var(--muted);margin-bottom:9px}.de{font-size:36px;font-weight:850}.la{font:italic 21px Georgia,serif;color:#64748b;margin-top:7px}.ru{font-size:16px;color:var(--muted)}.hint{font-size:12px;color:#8792a6;margin-top:16px}.controls{display:flex;gap:8px;margin-top:15px}.ctrl{border:0;padding:10px 14px;border-radius:11px;background:#eef2f7}.known{background:#dcfce7;color:#166534}.unknown{background:#fee2e2;color:#991b1b}
+.quiz{width:min(100%,650px)}.question{font-size:25px;font-weight:800;margin:20px 0 12px}.options{display:grid;gap:8px}.option{padding:12px;border:1px solid var(--line);border-radius:11px;background:#fff;text-align:left}.option:hover{border-color:#8daeff}.feedback{min-height:25px;margin-top:10px;font-weight:700}
+.statsGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.mini{border:1px solid var(--line);border-radius:15px;padding:13px;background:#fff}.mini small{color:var(--muted)}.mini b{display:block;font-size:23px;margin-top:3px}
+.skeleton{height:160px;display:grid;place-items:center;background:linear-gradient(145deg,#f8fbff,#f2f5fb);border-radius:17px;margin-bottom:15px}.svgsk{height:145px;filter:drop-shadow(0 5px 7px #17203322)}.footer{text-align:center;color:var(--muted);font-size:11px;padding:25px 0 8px}
+.hidden{display:none!important}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{position:static}.boneList{max-height:300px}.statsGrid{grid-template-columns:repeat(2,1fr)}.topstats{display:none}}@media(max-width:600px){.hero h2{font-size:28px}.app{padding:12px}.de{font-size:29px}.flash{height:270px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+<div class="brand"><div class="logo">🦴</div><div><h1>OsteoDeutsch</h1><small>Русский → Deutsch → Latin</small></div></div>
+<div class="topstats"><div class="stat">Выучено <b id="topLearned">0</b></div><div class="stat">Серия <b id="topStreak">0</b> 🔥</div></div>
+</header>
+
+<section class="hero">
+<h2>Скелет, который ты действительно запомнишь.</h2>
+<p>Медицинская лексика для Pflege: немецкие названия костей, латинская номенклатура, активное вспоминание и интервальное повторение.</p>
+<div class="heroBtns"><button class="primary" onclick="start()">Начать повторение →</button><button class="ghost" onclick="randomCard()">Случайная кость</button></div>
+</section>
+
+<div class="layout">
+<aside class="panel sidebar">
+<h3>Атлас</h3>
+<input class="search" id="search" placeholder="Schulter, лопатка, Scapula…" oninput="renderList()">
+<div class="filters" id="filters"></div>
+<div class="boneList" id="boneList"></div>
+</aside>
+
+<main class="main">
+<section class="panel">
+<div class="toolbar">
+<div class="modes"><button class="mode on" id="mFlash" onclick="setMode('flash')">Карточки</button><button class="mode" id="mQuiz" onclick="setMode('quiz')">Тест</button></div>
+<button class="mode" onclick="speak()">🔊 Произношение</button>
+</div>
+<div class="progress"><div class="bar" id="bar"></div></div>
+<div class="study" id="study">
+<div class="skeleton">
+<svg class="svgsk" viewBox="0 0 130 250" aria-label="Схематичный скелет">
+<circle cx="65" cy="25" r="19" fill="none" stroke="#94a3b8" stroke-width="5"/><path d="M65 44v70M45 65q20 15 40 0M48 57l-28 40M82 57l28 40M48 112l-20 70M82 112l20 70M28 182l-8 38M102 182l8 38" fill="none" stroke="#64748b" stroke-width="6" stroke-linecap="round"/><path d="M45 112q20 12 40 0M52 70h26" fill="none" stroke="#94a3b8" stroke-width="4"/>
+</svg></div>
+<div class="flash" id="flash"><div class="card" onclick="flip()" id="card"></div></div>
+<div class="quiz hidden" id="quiz"></div>
+<div class="controls" id="controls"></div>
+</div>
+</section>
+
+<section class="panel">
+<h3>Твоя статистика</h3>
+<div class="statsGrid">
+<div class="mini"><small>Всего терминов</small><b id="total">0</b></div>
+<div class="mini"><small>Выучено</small><b id="learned">0</b></div>
+<div class="mini"><small>Текущая серия</small><b id="streak">0</b></div>
+<div class="mini"><small>Точность</small><b id="accuracy">—</b></div>
+</div>
+</section>
+</main>
+</div>
+<div class="footer">OsteoDeutsch 2.0 · Учебный проект. Термины предназначены для обучения и должны сверяться с используемым учебником/программой.</div>
+</div>
+
+<script>
+const data=[
+["Schädel","Череп","Cranium","Череп"],["Stirnbein","Лобная кость","Os frontale","Череп"],["Scheitelbein","Теменная кость","Os parietale","Череп"],["Hinterhauptbein","Затылочная кость","Os occipitale","Череп"],["Schläfenbein","Височная кость","Os temporale","Череп"],["Keilbein","Клиновидная кость","Os sphenoidale","Череп"],["Siebbein","Решётчатая кость","Os ethmoidale","Череп"],["Nasenbein","Носовая кость","Os nasale","Череп"],["Jochbein","Скуловая кость","Os zygomaticum","Череп"],["Oberkiefer","Верхняя челюсть","Maxilla","Череп"],["Unterkiefer","Нижняя челюсть","Mandibula","Череп"],
+["Halswirbel","Шейный позвонок","Vertebra cervicalis","Позвоночник"],["Atlas","Атлант, C1","Atlas","Позвоночник"],["Axis","Осевой позвонок, C2","Axis","Позвоночник"],["Brustwirbel","Грудной позвонок","Vertebra thoracica","Позвоночник"],["Lendenwirbel","Поясничный позвонок","Vertebra lumbalis","Позвоночник"],["Kreuzbein","Крестец","Os sacrum","Позвоночник"],["Steißbein","Копчик","Os coccygis","Позвоночник"],
+["Brustbein","Грудина","Sternum","Грудная клетка"],["Rippe","Ребро","Costa","Грудная клетка"],["Rippenknorpel","Рёберный хрящ","Cartilago costalis","Грудная клетка"],
+["Schlüsselbein","Ключица","Clavicula","Плечевой пояс"],["Schulterblatt","Лопатка","Scapula","Плечевой пояс"],
+["Oberarmknochen","Плечевая кость","Humerus","Верхняя конечность"],["Speiche","Лучевая кость","Radius","Верхняя конечность"],["Elle","Локтевая кость","Ulna","Верхняя конечность"],["Handwurzelknochen","Кость запястья","Os carpi","Верхняя конечность"],["Kahnbein","Ладьевидная кость кисти","Os scaphoideum","Верхняя конечность"],["Mondbein","Полулунная кость","Os lunatum","Верхняя конечность"],["Dreiecksbein","Трёхгранная кость","Os triquetrum","Верхняя конечность"],["Erbsenbein","Гороховидная кость","Os pisiforme","Верхняя конечность"],["Großes Vieleckbein","Большая многоугольная кость","Os trapezium","Верхняя конечность"],["Kleines Vieleckbein","Малая многоугольная кость","Os trapezoideum","Верхняя конечность"],["Kopfbein","Головчатая кость","Os capitatum","Верхняя конечность"],["Hakenbein","Крючковидная кость","Os hamatum","Верхняя конечность"],["Mittelhandknochen","Пястная кость","Os metacarpale","Верхняя конечность"],["Fingerknochen","Фаланга пальца кисти","Phalanx digiti manus","Верхняя конечность"],
+["Becken","Таз","Pelvis","Таз"],["Darmbein","Подвздошная кость","Os ilium","Таз"],["Sitzbein","Седалищная кость","Os ischii","Таз"],["Schambein","Лобковая кость","Os pubis","Таз"],
+["Oberschenkelknochen","Бедренная кость","Femur","Нижняя конечность"],["Kniescheibe","Надколенник","Patella","Нижняя конечность"],["Schienbein","Большеберцовая кость","Tibia","Нижняя конечность"],["Wadenbein","Малоберцовая кость","Fibula","Нижняя конечность"],["Sprungbein","Таранная кость","Talus","Нижняя конечность"],["Fersenbein","Пяточная кость","Calcaneus","Нижняя конечность"],["Kahnbein des Fußes","Ладьевидная кость стопы","Os naviculare","Нижняя конечность"],["Würfelbein","Кубовидная кость","Os cuboideum","Нижняя конечность"],["Keilbein","Клиновидная кость стопы","Os cuneiforme","Нижняя конечность"],["Mittelfußknochen","Плюсневая кость","Os metatarsale","Нижняя конечность"],["Zehenknochen","Фаланга пальца стопы","Phalanx digiti pedis","Нижняя конечность"]
+];
+const cats=["Все","Череп","Позвоночник","Грудная клетка","Плечевой пояс","Верхняя конечность","Таз","Нижняя конечность"];
+let cat="Все",idx=0,flipped=false,mode="flash",learned=+localStorage.odLearned||0,streak=+localStorage.odStreak||0,right=+localStorage.odRight||0,answered=+localStorage.odAnswered||0;
+function save(){localStorage.odLearned=learned;localStorage.odStreak=streak;localStorage.odRight=right;localStorage.odAnswered=answered;drawStats()}
+function drawStats(){document.querySelector("#total").textContent=data.length;document.querySelector("#learned").textContent=learned;document.querySelector("#streak").textContent=streak;document.querySelector("#topLearned").textContent=learned;document.querySelector("#topStreak").textContent=streak;document.querySelector("#accuracy").textContent=answered?Math.round(right/answered*100)+"%":"—"}
+function renderFilters(){filters.innerHTML=cats.map(c=>`<button class="chip ${c===cat?"active":""}" onclick="cat='${c}';renderFilters();renderList()">${c}</button>`).join("")}
+function renderList(){let q=search.value.toLowerCase();let a=data.filter(x=>(cat==="Все"||x[3]===cat)&&x.slice(0,3).join(" ").toLowerCase().includes(q));boneList.innerHTML=a.map(x=>`<button class="bone" onclick="select('${x[0].replaceAll("'","")}')"><b>${x[0]}</b><span>${x[1]} · ${x[2]}</span></button>`).join("")}
+function select(n){idx=data.findIndex(x=>x[0]===n);flipped=false;mode="flash";update();document.querySelector("#study").scrollIntoView({behavior:"smooth"})}
+function start(){idx=0;flipped=false;mode="flash";update()}
+function randomCard(){idx=Math.floor(Math.random()*data.length);flipped=false;mode="flash";update()}
+function flip(){if(mode!=="flash")return;flipped=!flipped;drawCard()}
+function drawCard(){let b=data[idx];card.innerHTML=flipped?`<div class="tag">${b[1]}</div><div class="de">${b[0]}</div><div class="la">${b[2]}</div><div class="hint">Нажми, чтобы скрыть ответ</div>`:`<div class="tag">Переведи на немецкий и вспомни Latin</div><div class="de">${b[1]}</div><div class="la">?</div><div class="hint">Нажми на карточку, чтобы увидеть ответ</div>`;bar.style.width=((idx+1)/data.length*100)+"%";controls.innerHTML=flipped?`<button class="ctrl unknown" onclick="rate(false)">✕ Не знаю</button><button class="ctrl known" onclick="rate(true)">✓ Знаю</button>`:`<button class="ctrl" onclick="randomCard()">Случайная →</button>`}
+function rate(ok){answered++;if(ok){right++;learned++;streak++}else streak=0;save();idx=(idx+1)%data.length;flipped=false;drawCard()}
+function setMode(m){mode=m;update()}
+function update(){mFlash.classList.toggle("on",mode==="flash");mQuiz.classList.toggle("on",mode==="quiz");flash.classList.toggle("hidden",mode!=="flash");controls.classList.toggle("hidden",mode!=="flash");quiz.classList.toggle("hidden",mode!=="quiz");mode==="flash"?drawCard():drawQuiz()}
+function drawQuiz(){let b=data[idx],type=Math.floor(Math.random()*3),question=type===0?b[1]:type===1?b[0]:b[2],answer=type===0?b[0]:type===1?b[2]:b[1],label=type===0?"Как будет по-немецки?":type===1?"Как будет на латыни?":"Что означает термин?";let opts=[answer];while(opts.length<4){let x=data[Math.floor(Math.random()*data.length)][type===0?0:type===1?2:1];if(!opts.includes(x))opts.push(x)}opts.sort(()=>Math.random()-.5);quiz.innerHTML=`<div class="tag">${label}</div><div class="question">${question}</div><div class="options">${opts.map(o=>`<button class="option" onclick="answerQuiz(this,'${o.replaceAll("'","")}','${answer.replaceAll("'","")}')">${o}</button>`).join("")}</div><div class="feedback" id="feedback"></div>`;bar.style.width=((idx+1)/data.length*100)+"%"}
+function answerQuiz(el,a,c){answered++;if(a===c){right++;learned++;streak++;feedback.textContent="✓ Правильно";feedback.style.color="var(--green)"}else{streak=0;feedback.textContent="✕ Правильный ответ: "+c;feedback.style.color="var(--red)"}document.querySelectorAll(".option").forEach(x=>x.disabled=true);save();setTimeout(()=>{idx=(idx+1)%data.length;drawQuiz()},700)}
+function speak(){let b=data[idx],t=b[0];if("speechSynthesis"in window){let u=new SpeechSynthesisUtterance(t);u.lang="de-DE";speechSynthesis.cancel();speechSynthesis.speak(u)}}
+renderFilters();renderList();drawStats();drawCard();
+</script>
+</body>
+</html>
